@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # MQTT Publish Demo
 # Publish two messages, to two different topics
 
