@@ -1,6 +1,7 @@
-# MQTT Client demo
+#!/usr/bin/env python
+
+# MQTT Client
 # Continuously monitor two different MQTT topics for data,
-# check if the received data matches two predefined 'commands'
 
 import paho.mqtt.client as mqtt
 
