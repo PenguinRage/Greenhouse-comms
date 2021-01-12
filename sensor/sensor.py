@@ -1,10 +1,18 @@
 #!/usr/bin/env python
 
-# MQTT Publish Demo
-# Publish two messages, to two different topics
-
+# MQTT Sensor
+import Adafruit_DHT
 import paho.mqtt.publish as publish
 
-publish.single("Greenhouse/temp", "32", hostname="localhost")
-publish.single("Greenhouse/humidity", "79", hostname="localhost")
-print("Done")
+DHT_SENSOR = Adafruit_DHT.DHT22
+DHT_PIN = 4
+
+while True:
+    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+
+    if humidity is not None and temperature is not None:
+        print("Temp={0:0.1f}*C  Humidity={1:0.1f}%".format(temperature, humidity))
+        publish.single("Greenhouse/temp", temperature, hostname="localhost")  #localhost for testing purposes only
+        publish.single("Greenhouse/humidity", humidity, hostname="localhost")
+    else:
+        print("Failed to retrieve data from humidity sensor")
