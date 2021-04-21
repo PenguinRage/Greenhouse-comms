@@ -12,8 +12,7 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("Greenhouse/temp")
-    client.subscribe("Greenhouse/humidity")
+    client.subscribe("greenhouse/sensor")
 
 
 def on_message(client, userdata, msg):
@@ -24,5 +23,5 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("localhost", 1883, 60)
+client.connect("server", 1883, 60)
 client.loop_forever()
