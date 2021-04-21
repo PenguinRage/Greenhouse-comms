@@ -31,4 +31,4 @@ while True:
         (rc, mid) = client.publish("greenhouse/sensor", json.dumps(payload), qos=1)
     else:
         print("Failed to retrieve data from humidity sensor")
-    time.sleep(300)
+    time.sleep(60)
