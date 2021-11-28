@@ -8,7 +8,7 @@ import time
 import json
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 2
-IP="192.168.1.126"
+IP="192.168.1.106"
 
 def on_connect(client, userdata, flags, rc):
     print("CONNACK received with code %d." % (rc))
