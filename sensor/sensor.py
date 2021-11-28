@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 # MQTT Sensor
-import paho.mqtt.client as paho
 import time
 import Adafruit_DHT
 import time
