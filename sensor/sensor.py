@@ -18,10 +18,12 @@ while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     if humidity is not None and temperature is not None:
         payload = [ 
-                { "measurement": "temperature", "fields": { "value": temperature } },
-                { "measurement": "humidity", "fields": { "value": humidity } }
+                { 
+                    "measurement": "sensor", 
+                    "fields": { "temperature": temperature, "humidity": humidity }
+                }
             ]
         client.write_points(payload)
     else:
         print("Failed to retrieve data from humidity sensor")
-    time.sleep(15)
+    time.sleep(60)
