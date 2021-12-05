@@ -3,7 +3,7 @@ Humidity and temperature being transferred through a local network for monitorin
 
 ## Versions
 * v1 - used MQTT to Home-Assistant [Depreciated]. File can be found in old.
-* v2 - Sends metrics through to Influxdb
+* v2 - Now uses REST API sending metrics through to Influxdb.
 ``
 ## Dependencies
 * Adafruit_DHT.DHT11 - Rpi Sensor
