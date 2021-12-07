@@ -14,7 +14,6 @@ DHT_PIN = 2
 from influxdb import InfluxDBClient
 from influxdb.exceptions import InfluxDBServerError
 
-
 client = InfluxDBClient(host='server.local', port=8086, username=os.environ['INFLUXDB_USER'], password=os.environ['INFLUXDB_PWD'])
 client.switch_database('home_assistant')
 
