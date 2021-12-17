@@ -14,9 +14,6 @@ DHT_PIN = 2
 from influxdb import InfluxDBClient
 from influxdb.exceptions import InfluxDBServerError
 
-client = InfluxDBClient(host='server.local', port=8086, username=os.environ['INFLUXDB_USER'], password=os.environ['INFLUXDB_PWD'])
-client.switch_database('home_assistant')
-
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     if humidity is not None and temperature is not None:
@@ -28,7 +25,10 @@ while True:
                 }
             ]
         try:
+            client = InfluxDBClient(host='server.local', port=8086, username=os.environ['INFLUXDB_USER'], password=os.environ['INFLUXDB_PWD'])
+            client.switch_database('home_assistant')
             client.write_points(payload)
+            client.close()
         except (InfluxDBServerError):
             logging.error('Failed to send metrics to influxdb')
     else:
