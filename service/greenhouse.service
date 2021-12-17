@@ -1,0 +1,12 @@
+[Unit]
+Description=The Greenhouse Metrics InfluxDB service
+After=network-online.target
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+ExecStart=/home/dietpi/Greenhouse-comms/sensor/sensor.py
+User=root
+
+[Install]
+WantedBy=multi-user.target
