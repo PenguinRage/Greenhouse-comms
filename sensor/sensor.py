@@ -7,6 +7,7 @@ import time
 import json
 import os
 import logging
+import requests
 
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 2
@@ -28,9 +29,12 @@ while True:
             client = InfluxDBClient(host='server.local', port=8086, username=os.environ['INFLUXDB_USER'], password=os.environ['INFLUXDB_PWD'])
             client.switch_database('home_assistant')
             client.write_points(payload)
-            client.close()
         except (InfluxDBServerError):
             logging.error('Failed to send metrics to influxdb')
+        except (requests.exceptions.ConnectionError):
+            logging.error('Failed to connect to InfluxDB')
+        finally:
+            client.close()
     else:
         print("Failed to retrieve data from humidity sensor")
     time.sleep(60)
